@@ -132,6 +132,7 @@
     </Build>
     <Build Include="dbo\Tables\InstitutionalInvestorsDailyTransactionTotal.sql" />
     <Build Include="dbo\Tables\InstitutionalInvestorsDailyTransactionStocks.sql" />
+    <Build Include="dbo\Tables\TaiexDaily.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StockAnalysis.refactorlog" />
