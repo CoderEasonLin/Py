@@ -8,6 +8,9 @@ import logging
 import time
 import datetime
 
+db = pymssql.connect(".", "sa", "sa", "StockAnalysis")
+cursor = db.cursor()
+
 def insertDB(db, cursor, date, who, product, long, longTurnover, short, shortTurnover, longShortDiff, longShortDiffTurnover, longTotal, longTotalTurnover, shortTotal, shortTotalTurnover, longShortTotalDiff, longShortTotalDiffTurnover):
     sql = "INSERT INTO [dbo].[FuturesContract]\
            ([Date]\
@@ -39,9 +42,6 @@ def main(date=time.localtime()):
                         format='%(asctime)s\t[%(levelname)s]\t%(message)s',
                         datefmt='%Y/%m/%d %H:%M:%S')
 
-    db = pymssql.connect(".", "sa", "sa", "StockAnalysis")
-    cursor = db.cursor()
-    
     dateStrToDB = date.strftime("%Y/%m/%d")
     dateStr = date.strftime("%Y%m%d")
     url = "http://www.taifex.com.tw/chinese/3/7_12_3.asp"
@@ -50,6 +50,9 @@ def main(date=time.localtime()):
     res = requests.post(url, data=d)
     res.encoding = res.apparent_encoding
     soup = BeautifulSoup(res.text, 'lxml')
+
+    cursor.execute("DELETE FROM [dbo].[FuturesContract] WHERE Date = '%s'" % (dateStrToDB))
+    db.commit()
 
     product = ''
     count = 0
@@ -94,21 +97,25 @@ def main(date=time.localtime()):
             print(e)
             logging.error("insert data error → Who:" + who + ", RowData:" + str(row) + ", error msg:" + str(e))
             db.rollback()
-    db.close()
+    
 
 
 if __name__ == '__main__':
-    # 爬一段日期的資料
-    #startDate = datetime.datetime(2017, 12, 18)
-    #nowDate = datetime.datetime.now()
-    #while startDate <= nowDate:
-    #    main(startDate)
-    #    time.sleep(3)
-    #    startDate = startDate + datetime.timedelta(1)
-
-
     # 20171218 開始區分外資自營商
 
+    # 爬電腦當天的資料，並補上之前缺的資料
+    #startDate = datetime.datetime(2017, 12, 18)
+    startDate = None
+    nowDate = datetime.datetime.now()
 
-    # 爬電腦當天的資料
-    main(datetime.datetime(2018, 5, 25))
+    if startDate is None:
+        cursor.execute("SELECT TOP 1 Date FROM FuturesContract ORDER BY Date DESC")
+        row = cursor.fetchone()
+        startDate = nowDate if row is None else row[0]
+    while startDate <= nowDate:
+        print(startDate)
+        main(startDate)
+        time.sleep(3)
+        startDate = startDate + datetime.timedelta(1)
+
+    db.close()
