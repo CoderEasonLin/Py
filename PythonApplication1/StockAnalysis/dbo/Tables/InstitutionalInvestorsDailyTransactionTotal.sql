@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[InstitutionalInvestorsDailyTransaction]
+﻿CREATE TABLE [dbo].[InstitutionalInvestorsDailyTransactionTotal]
 (
 	[Date] DATE NOT NULL , 
     [Who] NVARCHAR(50) NOT NULL, 
