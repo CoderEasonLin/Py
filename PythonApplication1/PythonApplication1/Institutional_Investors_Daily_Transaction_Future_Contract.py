@@ -34,7 +34,7 @@ def insertDB(db, cursor, date, who, product, long, longTurnover, short, shortTur
     db.commit()
 
 
-def main(date=time.localtime()):
+def main(date=time.localtime(), url=""):
     if not os.path.isdir('log'):
         os.makedirs('log')
     logging.basicConfig(filename='log/getlist-error.log',
@@ -44,15 +44,11 @@ def main(date=time.localtime()):
 
     dateStrToDB = date.strftime("%Y/%m/%d")
     dateStr = date.strftime("%Y%m%d")
-    url = "http://www.taifex.com.tw/chinese/3/7_12_3.asp"
     d = {'goday': '', 'DATA_DATE_Y': date.year, 'DATA_DATE_M': date.month, 'DATA_DATE_D': date.day, 'syear': date.year, 'smonth': date.month, 'sday': date.day, 'datestart': dateStrToDB, 'COMMODITY_ID': ''}
     data = "goday=&DATA_DATE_Y={0}&DATA_DATE_M={1}&DATA_DATE_D={2}&syear={0}&smonth={1}&sday={2}&datestart={3}&COMMODITY_ID=".format(date.year, date.month, date.day, dateStrToDB)
     res = requests.post(url, data=d)
     res.encoding = res.apparent_encoding
     soup = BeautifulSoup(res.text, 'lxml')
-
-    cursor.execute("DELETE FROM [dbo].[FuturesContract] WHERE Date = '%s'" % (dateStrToDB))
-    db.commit()
 
     product = ''
     count = 0
@@ -102,10 +98,11 @@ def main(date=time.localtime()):
 
 if __name__ == '__main__':
     # 20171218 開始區分外資自營商
-
+    urlCommodities = "http://www.taifex.com.tw/chinese/3/7_12_3.asp"
+    urlOptions = "http://www.taifex.com.tw/chinese/3/7_12_4.asp"
     # 爬電腦當天的資料，並補上之前缺的資料
-    #startDate = datetime.datetime(2017, 12, 18)
-    startDate = None
+    startDate = datetime.datetime(2018, 5, 19)
+    #startDate = None
     nowDate = datetime.datetime.now()
 
     if startDate is None:
@@ -114,7 +111,13 @@ if __name__ == '__main__':
         startDate = nowDate if row is None else row[0]
     while startDate <= nowDate:
         print(startDate)
-        main(startDate)
+
+        # remove data before insert
+        cursor.execute("DELETE FROM [dbo].[FuturesContract] WHERE Date = '%s'" % (startDate.strftime("%Y/%m/%d")))
+        db.commit()
+
+        main(startDate, urlCommodities)
+        main(startDate, urlOptions)
         time.sleep(3)
         startDate = startDate + datetime.timedelta(1)
 
