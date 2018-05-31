@@ -8,6 +8,9 @@ import logging
 import time
 import datetime
 
+db = pymssql.connect(".", "sa", "sa", "StockAnalysis")
+cursor = db.cursor()
+
 def insertDB(db, cursor, date, shares, turnover, transaction, taiex, diff):
     sql = "INSERT INTO [dbo].[TaiexDaily]\
                    ([Date]\
@@ -30,8 +33,6 @@ def main(date=time.localtime()):
                         format='%(asctime)s\t[%(levelname)s]\t%(message)s',
                         datefmt='%Y/%m/%d %H:%M:%S')
 
-    db = pymssql.connect(".", "sa", "sa", "StockAnalysis")
-    cursor = db.cursor()
     
     dateStrToDB = date.strftime("%Y/%m/%d")
     dateStr = date.strftime("%Y%m%d")
@@ -57,18 +58,29 @@ def main(date=time.localtime()):
             print(e)
             logging.error("insert data error → RowData:" + str(row) + ", error msg:" + str(e))
             db.rollback()
-    db.close()
 
 
 if __name__ == '__main__':
-    # 爬一段日期的資料
-    startDate = datetime.datetime(2015, 5, 19)
-    nowDate = datetime.datetime.now()
-    while startDate <= nowDate:
-        main(startDate)
-        time.sleep(3)
-        startDate = startDate + datetime.timedelta(28)
-
+    # 20171218 開始區分外資自營商
 
     # 爬電腦當天的資料
-    #main(datetime.datetime(2017, 12, 18))
+    startDate = None
+    nowDate = datetime.datetime.now()
+
+    if startDate is None:
+        cursor.execute("SELECT TOP 1 Date FROM [TaiexDaily] ORDER BY Date DESC")
+        row = cursor.fetchone()
+        startDate = nowDate if row is None else datetime.datetime.strptime(row[0], '%Y-%m-%d')
+
+    while startDate <= nowDate:
+        print(startDate)
+
+        # remove data before insert
+        cursor.execute("DELETE FROM [dbo].[TaiexDaily] WHERE Date = '%s'" % (startDate.strftime("%Y/%m/%d")))
+        db.commit()
+
+        main(startDate)
+        time.sleep(3)
+        startDate = startDate + datetime.timedelta(1)
+
+    db.close()
