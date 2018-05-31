@@ -82,17 +82,7 @@ def main(date=time.localtime()):
 
 
 if __name__ == '__main__':
-    # 爬一段日期的資料
-    #startDate = datetime.datetime(2017, 12, 18)
-    #nowDate = datetime.datetime.now()
-    #while startDate <= nowDate:
-    #    main(startDate)
-    #    time.sleep(3)
-    #    startDate = startDate + datetime.timedelta(1)
-
-
     # 20171218 開始區分外資自營商
-
 
     # 爬電腦當天的資料
     startDate = None
