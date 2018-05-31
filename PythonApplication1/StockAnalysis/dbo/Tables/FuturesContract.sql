@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[FuturesContract] (
-    [Date]                       DATETIME      NOT NULL,
+    [Date]                       DATE      NOT NULL,
     [ProductName]                NVARCHAR (50) NOT NULL,
     [Who]                        NVARCHAR (50) NOT NULL,
     [LongCount]                  INT           NOT NULL,

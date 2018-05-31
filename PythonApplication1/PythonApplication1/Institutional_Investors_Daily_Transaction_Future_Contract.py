@@ -108,7 +108,7 @@ if __name__ == '__main__':
     if startDate is None:
         cursor.execute("SELECT TOP 1 Date FROM FuturesContract ORDER BY Date DESC")
         row = cursor.fetchone()
-        startDate = nowDate if row is None else row[0]
+        startDate = nowDate if row is None else datetime.datetime.strptime(row[0], '%Y-%m-%d')
     while startDate <= nowDate:
         print(startDate)
 
