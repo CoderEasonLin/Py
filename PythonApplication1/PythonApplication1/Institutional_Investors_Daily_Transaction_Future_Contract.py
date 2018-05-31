@@ -101,8 +101,8 @@ if __name__ == '__main__':
     urlCommodities = "http://www.taifex.com.tw/chinese/3/7_12_3.asp"
     urlOptions = "http://www.taifex.com.tw/chinese/3/7_12_4.asp"
     # 爬電腦當天的資料，並補上之前缺的資料
-    startDate = datetime.datetime(2018, 5, 19)
-    #startDate = None
+    #startDate = datetime.datetime(2018, 5, 19)
+    startDate = None
     nowDate = datetime.datetime.now()
 
     if startDate is None:
