@@ -6,6 +6,5 @@
     [Buy] INT NOT NULL, 
     [Sell] INT NOT NULL, 
     [Diff] NCHAR(10) NOT NULL, 
-    [HasBigTransaction] BIT NOT NULL, 
     PRIMARY KEY ([Date], [StockId], [Who])
 )
