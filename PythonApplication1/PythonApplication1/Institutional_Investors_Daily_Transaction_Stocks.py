@@ -35,7 +35,7 @@ def main(date=time.localtime()):
     
     dateStrToDB = date.strftime("%Y/%m/%d")
     dateStr = date.strftime("%Y%m%d")
-    url = "http://www.tse.com.tw/fund/T86?response=html&date=" + dateStr + "&selectType=ALL"
+    url = "http://www.tse.com.tw/fund/T86?response=html&date=" + dateStr + "&selectType=ALLBUT0999"
     res = requests.get(url, verify = False)
     soup = BeautifulSoup(res.text, 'lxml')
 
@@ -134,7 +134,7 @@ if __name__ == '__main__':
         db.commit()
 
         main(startDate)
-        time.sleep(2)
+        time.sleep(3)
         startDate = startDate + datetime.timedelta(1)
 
     db.close()
