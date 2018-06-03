@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>443efd95-b2ef-49d7-be02-570f7bcc8add</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Institutional_Investors_Daily_Transaction_Stocks.py</StartupFile>
+    <StartupFile>StockDaily.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,6 +25,7 @@
     <Compile Include="Run.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="StockDaily.py" />
     <Compile Include="TaiexDaily.py" />
     <Compile Include="Institutional_Investors_Daily_Transaction_Total.py">
       <SubType>Code</SubType>

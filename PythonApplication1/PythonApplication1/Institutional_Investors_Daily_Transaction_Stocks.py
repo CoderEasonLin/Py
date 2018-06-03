@@ -118,7 +118,7 @@ if __name__ == '__main__':
     # 20171218 開始區分外資自營商
 
     # 爬電腦當天的資料
-    startDate = datetime.datetime(2015, 5, 19)
+    startDate = None
     nowDate = datetime.datetime.now()
 
     if startDate is None:

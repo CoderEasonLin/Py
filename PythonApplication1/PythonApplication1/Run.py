@@ -12,3 +12,7 @@ os.system('Institutional_Investors_Daily_Transaction_Total.py')
 print('Start TaiexDaily')
 os.system('TaiexDaily.py')
 
+print('Start StockDaily')
+os.system('StockDaily.py')
+
+

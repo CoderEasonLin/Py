@@ -137,6 +137,7 @@
     <Build Include="dbo\Views\MovingAvg.sql" />
     <Build Include="dbo\Views\ForeignInvestersFutureContract.sql" />
     <Build Include="dbo\Views\ForeignInvestorsTotal.sql" />
+    <Build Include="dbo\Tables\StockDaily.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="StockAnalysis.refactorlog" />
