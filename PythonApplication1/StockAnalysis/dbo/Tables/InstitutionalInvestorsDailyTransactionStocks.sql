@@ -5,6 +5,6 @@
     [Who] NVARCHAR(50) NOT NULL, 
     [Buy] INT NOT NULL, 
     [Sell] INT NOT NULL, 
-    [Diff] NCHAR(10) NOT NULL, 
+    [Diff] INT NOT NULL, 
     PRIMARY KEY ([Date], [StockId], [Who])
 )
