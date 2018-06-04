@@ -42,4 +42,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Date" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="cb04bf7e-f51e-488f-8c78-52eb75855c27" ChangeDateTime="06/04/2018 08:16:42">
+    <Property Name="ElementName" Value="[dbo].[BigInvestorsFutureContract].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BigInvestorsFutureContract]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3353ba32-08b6-4e00-936a-92709cdd3a15" ChangeDateTime="06/04/2018 08:17:22">
+    <Property Name="ElementName" Value="[dbo].[BigInvestorsFutureContract].[Product]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BigInvestorsFutureContract]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProductName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1eb0399a-f7b6-41df-9f63-1fed34df8e86" ChangeDateTime="06/04/2018 08:22:14">
+    <Property Name="ElementName" Value="[dbo].[BigInvestorsFutureContract].[Top5Total]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BigInvestorsFutureContract]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BuyTop5" />
+  </Operation>
 </Operations>
