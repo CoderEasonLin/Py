@@ -15,4 +15,11 @@ os.system('TaiexDaily.py')
 print('Start StockDaily')
 os.system('StockDaily.py')
 
+print('Start Big_Investors_Future_Contract')
+os.system('Big_Investors_Future_Contract.py')
 
+print('Start UpdateContinueBuySummary')
+os.system('UpdateContinueBuySummary.py')
+
+print('Start UpdateContinueSellSummary')
+os.system('UpdateContinueSellSummary.py')

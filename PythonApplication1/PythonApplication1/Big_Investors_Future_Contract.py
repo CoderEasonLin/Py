@@ -62,18 +62,6 @@ def main(date=time.localtime()):
         try:
             if len(cols) == 11:
                 product = cols[0].text.strip()
-                deadline = cols[1].text.strip().replace('\r\n', '').replace('\t', '')
-                pattern = re.compile('(\d+)\s*\((\d+)\)')
-                split = re.split(pattern, cols[2].text.strip().replace(',', ''))
-                buyTop5 = split[1]
-                split = re.split(pattern, cols[4].text.strip().replace(',', ''))
-                buyTop10 = split[1]
-                split = re.split(pattern, cols[6].text.strip().replace(',', ''))
-                sellTop5 = split[1]
-                split = re.split(pattern, cols[8].text.strip().replace(',', ''))
-                sellTop10 = split[1]
-                total = cols[10].text.strip().replace(',', '')
-                insertDB(db, cursor, dateStrToDB, product, deadline, buyTop5, buyTop10, sellTop5, sellTop10, total)
             elif len(cols) == 10:
                 deadline = cols[0].text.strip().replace('\r\n', '').replace('\t', '')
                 pattern = re.compile('(\d+)\s*\((\d+)\)')

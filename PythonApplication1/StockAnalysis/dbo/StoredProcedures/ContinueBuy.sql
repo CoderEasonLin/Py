@@ -12,6 +12,6 @@ AS
       ,[Diff]
 	  ,SUM(CASE WHEN Diff > 0 THEN 1 ELSE 0 END) OVER (PARTITION BY StockId, Who ORDER BY Date ASC ROWS ' + @rows + ' PRECEDING) AS Days
 	FROM [StockAnalysis].[dbo].[InstitutionalInvestorsDailyTransactionStocks]
-	where  Who LIKE N''' + @who + '%'') a
-	where Days = ' + @days + ' and Date = ''' + @date + '''')
+	where Who LIKE N''' + @who + '%'' AND Date IN (select DISTINCT TOP ' + @days + ' Date From [InstitutionalInvestorsDailyTransactionStocks] WHERE Date <= ''' + @date + ''' ORDER BY DATE DESC)) a
+	where Days = ' + @days + ' AND Date = ''' + @date + '''')
 RETURN 0
