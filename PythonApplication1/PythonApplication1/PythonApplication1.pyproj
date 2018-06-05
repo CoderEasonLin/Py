@@ -21,8 +21,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BackupDb.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Big_Investors_Future_Contract.py" />
     <Compile Include="Institutional_Investors_Daily_Transaction_Future_Contract.py" />
+    <Compile Include="QuickStart.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Run.py">
       <SubType>Code</SubType>
     </Compile>
