@@ -63,4 +63,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="BuyTop5" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a58bf37e-f920-4ced-8814-012e7f5e0842" ChangeDateTime="06/05/2018 05:28:08">
+    <Property Name="ElementName" Value="[dbo].[InstitutionalInvestorsDailyOptionSummary].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[InstitutionalInvestorsDailyOptionSummary]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Date" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c1efc36a-effc-400d-b8b2-b7cdd24f8025" ChangeDateTime="06/05/2018 05:29:20">
+    <Property Name="ElementName" Value="[dbo].[InstitutionalInvestorsDailyOptionSummary].[buy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[InstitutionalInvestorsDailyOptionSummary]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Buy" />
+  </Operation>
 </Operations>

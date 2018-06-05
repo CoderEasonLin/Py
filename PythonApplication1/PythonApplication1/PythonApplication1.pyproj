@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>443efd95-b2ef-49d7-be02-570f7bcc8add</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Big_Investors_Future_Contract.py</StartupFile>
+    <StartupFile>Institutional_Investors_Daily_Option_Status.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -24,6 +24,7 @@
     <Compile Include="BackupDb.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Institutional_Investors_Daily_Option_Status.py" />
     <Compile Include="Big_Investors_Future_Contract.py" />
     <Compile Include="Institutional_Investors_Daily_Transaction_Future_Contract.py" />
     <Compile Include="QuickStart.py">
